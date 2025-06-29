@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}{{ object.title }}{% endblock %}
+{% block content %}
+<div class="welcome-box">
+    <h1>{{ object.title }}</h1>
+    <h3>{{ object.subtitle }}</h3>
+    {% if object.image %}
+        <img src="{{ object.image.url }}" alt="Imagen de {{ object.title }}">
+    {% endif %}
+    <p>{{ object.content|safe }}</p>
+    <p>Autor: {{ object.author.username }} | Fecha: {{ object.date }}</p>
+    <a href="{% url 'post_list' %}" class="btn-link">Volver al listado</a>
+</div>
+{% endblock %}

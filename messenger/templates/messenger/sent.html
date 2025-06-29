@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Mensajes enviados{% endblock %}
+{% block content %}
+<h1>Mensajes enviados</h1>
+<a href="{% url 'messenger-send' %}" class="btn-special">Enviar mensaje</a>
+<a href="{% url 'messenger-inbox' %}" class="btn-edit">Bandeja de entrada</a>
+<ul>
+    {% for msg in messages %}
+        <li>
+            <strong>Para:</strong> {{ msg.receiver.username }}<br>
+            <strong>Mensaje:</strong> {{ msg.content }}<br>
+            <small>{{ msg.date_sent }}</small>
+        </li>
+    {% empty %}
+        <li>No has enviado mensajes.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

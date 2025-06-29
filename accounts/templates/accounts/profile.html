@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Perfil{% endblock %}
+{% block content %}
+<div class="welcome-box">
+    <h1>Mi Perfil</h1>
+    <div style="margin: 1.5em 0;">
+        {% if user.profile.avatar %}
+            <img src="{{ user.profile.avatar.url }}" alt="Avatar" style="width:120px;height:120px;border-radius:50%;border:3px solid #b983ff;box-shadow:0 2px 12px #b983ff44;">
+        {% endif %}
+    </div>
+    <p><strong>Nombre:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Biografía:</strong> {{ user.profile.bio }}</p>
+    <p><strong>Fecha de nacimiento:</strong> {{ user.profile.birthdate }}</p>
+    <p><strong>Enlace:</strong> 
+        {% if user.profile.link %}
+            <a href="{{ user.profile.link }}" class="btn-link" target="_blank">{{ user.profile.link }}</a>
+        {% else %}
+            <span style="color:#b983ff;">No especificado</span>
+        {% endif %}
+    </p>
+    <a href="{% url 'profile-edit' %}" class="btn-edit">Editar perfil</a>
+</div>
+{% endblock %}

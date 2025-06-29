@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Bandeja de entrada{% endblock %}
+{% block content %}
+<div class="welcome-box">
+    <h1>Bandeja de entrada</h1>
+    <a href="{% url 'messenger-send' %}" class="btn-special">Enviar mensaje</a>
+    <a href="{% url 'messenger-sent' %}" class="btn-edit">Enviados</a>
+    <ul>
+        {% for msg in messages %}
+            <li>
+                <strong>De:</strong> {{ msg.sender.username }}<br>
+                <strong>Mensaje:</strong> {{ msg.content }}<br>
+                <small>{{ msg.date_sent }}</small>
+            </li>
+        {% empty %}
+            <li>No tienes mensajes.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
